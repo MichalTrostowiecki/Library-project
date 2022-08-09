@@ -1,8 +1,7 @@
-const bookAuthor = document.querySelector("#author").value;
-const bookTittle = document.querySelector("#tittle").value;
-const bookPages = document.querySelector("#pages").value;
-const addButton = document.querySelector("#add");
-
+const bookAuthor = document.querySelector("#author");
+const bookTittle = document.querySelector("#tittle");
+const bookPages = document.querySelector("#pages");
+const btnAdd = document.querySelector("#add");
 let myLibrary = [];
 
 function Book(author, tittle, pages) {
@@ -14,15 +13,15 @@ function Book(author, tittle, pages) {
 
 function addBookToLibrary() {}
 
-function userBook(bookAuthor, bookTittle, pages) {
+function userBook(author, tittle, pages) {
   const newBook = new Book();
-  newBook.author = bookAuthor;
-  newBook.tittle = bookTittle;
+  newBook.author = author;
+  newBook.tittle = tittle;
   newBook.pages = pages;
   myLibrary.push(newBook);
   return myLibrary;
 }
 
-addButton.addEventListener("click", (value) => {
-  userBook(value);
+btnAdd.addEventListener("click", () => {
+  userBook(bookAuthor.value, bookTittle.value, bookPages.value);
 });
