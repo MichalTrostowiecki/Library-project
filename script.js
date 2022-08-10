@@ -44,20 +44,45 @@ function closeForm() {
 // -------------Adding books to display-------------
 
 function createBookCard() {
+  let bookCounter = myLibrary.length;
   const bookContainer = document.querySelector(".book-container");
   const bookCard = document.createElement("div");
   const author = document.createElement("p");
   const tittle = document.createElement("p");
   const pages = document.createElement("p");
+  const createRemoveBtn = document.createElement("button");
+  const bookNumber = document.createElement("p");
 
   myLibrary.forEach((book) => {
     author.textContent = `Author: ${book.author}`;
     tittle.textContent = `Tittle: ${book.tittle}`;
     pages.textContent = `Pages: ${book.pages}`;
+    createRemoveBtn.textContent = "Remove";
+    bookNumber.textContent = `Book number: ${bookCounter}`;
   });
 
   bookContainer.append(bookCard);
   bookCard.appendChild(author);
   bookCard.appendChild(tittle);
   bookCard.appendChild(pages);
+  bookCard.appendChild(createRemoveBtn);
+  bookCard.appendChild(bookNumber);
+  bookCard.classList.add("book-card");
+  createRemoveBtn.classList.add("remove-button");
+  createRemoveBtn.addEventListener("click", () => {
+    removeDisplayBook();
+    removeFromLibrary(myLibrary, author);
+  });
+}
+
+//------ Functions to remove books from display and library ----
+
+function removeDisplayBook() {
+  const div = document.querySelector(".book-card");
+  div.remove();
+}
+
+function removeFromLibrary(array, element) {
+  const index = array.indexOf(element);
+  array.splice(index, 1);
 }
