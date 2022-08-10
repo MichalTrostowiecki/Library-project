@@ -44,30 +44,43 @@ function closeForm() {
 // -------------Adding books to display-------------
 
 function createBookCard() {
-  let bookCounter = myLibrary.length;
   const bookContainer = document.querySelector(".book-container");
   const bookCard = document.createElement("div");
   const author = document.createElement("p");
   const tittle = document.createElement("p");
   const pages = document.createElement("p");
   const createRemoveBtn = document.createElement("button");
-  const bookNumber = document.createElement("p");
+  const toggleSwitchLabel = document.createElement("label");
+  const toggleSwitchInput = document.createElement("input");
+  const toggleSwitchSpan = document.createElement("span");
+  const isRead = document.createElement("p");
 
   myLibrary.forEach((book) => {
     author.textContent = `Author: ${book.author}`;
     tittle.textContent = `Tittle: ${book.tittle}`;
     pages.textContent = `Pages: ${book.pages}`;
     createRemoveBtn.textContent = "Remove";
-    bookNumber.textContent = `Book number: ${bookCounter}`;
   });
 
   bookContainer.append(bookCard);
   bookCard.appendChild(author);
   bookCard.appendChild(tittle);
   bookCard.appendChild(pages);
+  bookCard.appendChild(toggleSwitchLabel);
+  toggleSwitchLabel.appendChild(toggleSwitchInput);
+  toggleSwitchLabel.appendChild(toggleSwitchSpan);
+
+  bookCard.appendChild(isRead);
   bookCard.appendChild(createRemoveBtn);
-  bookCard.appendChild(bookNumber);
+  isRead.textContent = "NO / YES";
   bookCard.classList.add("book-card");
+  // -------------Toggle Switch-------------
+
+  toggleSwitchLabel.classList.add("switch");
+  toggleSwitchInput.type = "checkbox";
+  toggleSwitchSpan.classList.add("slider-round");
+
+  //// -------------remove button -------------
   createRemoveBtn.classList.add("remove-button");
   createRemoveBtn.addEventListener("click", () => {
     removeDisplayBook();
