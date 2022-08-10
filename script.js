@@ -1,8 +1,11 @@
-const author = document.querySelector("#author");
-const tittle = document.querySelector("#tittle");
-const pages = document.querySelector("#pages");
-const btnAdd = document.querySelector("#add");
 let myLibrary = [];
+
+const btnAdd = document.querySelector("#add");
+const btnOpen = document.querySelector(".form-button");
+btnOpen.addEventListener("click", openForm);
+
+const hideFormBtn = document.querySelector(".hide-form");
+hideFormBtn.addEventListener("click", closeForm);
 
 function Book(author, tittle, pages) {
   //constructor
@@ -11,17 +14,25 @@ function Book(author, tittle, pages) {
   this.pages = pages;
 }
 
+// -------------Getting book from the user input-------------
+
 function userBook() {
+  const author = document.querySelector("#author");
+  const tittle = document.querySelector("#tittle");
+  const pages = document.querySelector("#pages");
+
   const newBook = new Book(author.value, tittle.value, pages.value);
   if (author.value === "" || tittle.value === "" || pages.value === "") {
     alert("Please fill all the data.");
   } else {
     myLibrary.push(newBook);
+    createBookCard();
   }
 }
 
 btnAdd.addEventListener("click", userBook);
 
+// -------------Pop up form hide / open -------------
 function openForm() {
   document.getElementById("book-input").style.display = "block";
 }
@@ -30,11 +41,7 @@ function closeForm() {
   document.getElementById("book-input").style.display = "none";
 }
 
-const btnOpen = document.querySelector(".form-button");
-btnOpen.addEventListener("click", openForm);
-
-const hideFormBtn = document.querySelector(".hide-form");
-hideFormBtn.addEventListener("click", closeForm);
+// -------------Adding books to display-------------
 
 function createBookCard() {
   const bookContainer = document.querySelector(".book-container");
