@@ -7,11 +7,12 @@ btnOpen.addEventListener("click", openForm);
 const hideFormBtn = document.querySelector(".hide-form");
 hideFormBtn.addEventListener("click", closeForm);
 
-function Book(author, tittle, pages) {
+function Book(author, tittle, pages, id) {
   //constructor
   this.author = author;
   this.tittle = tittle;
   this.pages = pages;
+  this.id = -1;
 }
 
 // -------------Getting book from the user input-------------
@@ -21,11 +22,15 @@ function userBook() {
   const tittle = document.querySelector("#tittle");
   const pages = document.querySelector("#pages");
 
-  const newBook = new Book(author.value, tittle.value, pages.value);
+  const newBook = new Book(author.value, tittle.value, pages.value, (id = -1));
+
   if (author.value === "" || tittle.value === "" || pages.value === "") {
     alert("Please fill all the data.");
   } else {
     myLibrary.push(newBook);
+    myLibrary.forEach((item, i) => {
+      item.id = i + 1;
+    });
     createBookCard();
   }
 }
@@ -60,6 +65,9 @@ function createBookCard() {
     tittle.textContent = `Tittle: ${book.tittle}`;
     pages.textContent = `Pages: ${book.pages}`;
     createRemoveBtn.textContent = "Remove";
+    for (let i = 0; i < myLibrary.length; i++) {
+      bookCard.setAttribute("id", i);
+    }
   });
 
   bookContainer.append(bookCard);
@@ -84,7 +92,7 @@ function createBookCard() {
   createRemoveBtn.classList.add("remove-button");
   createRemoveBtn.addEventListener("click", () => {
     removeDisplayBook();
-    removeFromLibrary(myLibrary, myLibrary.author);
+    removeFromLibrary(myLibrary, author);
   });
 }
 
@@ -97,6 +105,9 @@ function removeDisplayBook() {
 
 function removeFromLibrary(array, element) {
   const index = array.indexOf(element);
-  console.log(index);
   array.splice(index, 1);
+}
+//// I need to add ID to every element of book in mylibrary array
+function removeBookLibrary(array) {
+  idDiv = document.getElementById("d");
 }
