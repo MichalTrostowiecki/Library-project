@@ -84,7 +84,7 @@ function createBookCard() {
   createRemoveBtn.classList.add("remove-button");
   createRemoveBtn.addEventListener("click", () => {
     removeDisplayBook();
-    removeFromLibrary(myLibrary, author);
+    removeFromLibrary(myLibrary, myLibrary.author);
   });
 }
 
@@ -97,5 +97,6 @@ function removeDisplayBook() {
 
 function removeFromLibrary(array, element) {
   const index = array.indexOf(element);
+  console.log(index);
   array.splice(index, 1);
 }

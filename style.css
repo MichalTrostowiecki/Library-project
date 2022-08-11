@@ -1,5 +1,37 @@
-.book-form-container {
-  display: block;
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --------------------------- Book Card / Container ----------------------------- */
+.book-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 350px));
+  padding: 20px;  
+  gap: 20px;
+ 
+}
+
+
+
+.book-card {
+  background: rgb(92, 189, 132);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(174,170,179,1);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(174,170,179,1);
+  box-shadow: 10px 10px 5px 0px rgba(174,170,179,1);
+  border-radius: 30px;
 }
 
 
@@ -8,12 +40,6 @@
 
 
 
-
-
-
-
-
-/* --------------------------- Book Card ----------------------------- */
 /* The switch - the box around the slider */
 .switch {
   position: relative;
