@@ -108,6 +108,3 @@ function removeFromLibrary(array, element) {
   array.splice(index, 1);
 }
 //// I need to add ID to every element of book in mylibrary array
-function removeBookLibrary(array) {
-  idDiv = document.getElementById("d");
-}
