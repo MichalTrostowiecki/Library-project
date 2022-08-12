@@ -7,12 +7,13 @@ btnOpen.addEventListener("click", openForm);
 const hideFormBtn = document.querySelector(".hide-form");
 hideFormBtn.addEventListener("click", closeForm);
 
-function Book(author, tittle, pages, id) {
+function Book(author, tittle, pages) {
   //constructor
   this.author = author;
   this.tittle = tittle;
   this.pages = pages;
   this.id = -1;
+  this.id1 = Math.floor(Math.random() * 1000000);
 }
 
 // -------------Getting book from the user input-------------
