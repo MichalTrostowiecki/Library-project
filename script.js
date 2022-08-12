@@ -66,7 +66,7 @@ function createBookCard() {
     pages.textContent = `Pages: ${book.pages}`;
     createRemoveBtn.textContent = "Remove";
     for (let i = 0; i < myLibrary.length; i++) {
-      bookCard.setAttribute("id", i);
+      createRemoveBtn.setAttribute("id", i);
     }
   });
 
@@ -90,21 +90,33 @@ function createBookCard() {
 
   //// -------------remove button -------------
   createRemoveBtn.classList.add("remove-button");
-  createRemoveBtn.addEventListener("click", () => {
-    removeDisplayBook();
-    removeFromLibrary(myLibrary, author);
+  createRemoveBtn.addEventListener("click", (event) => {
+    let dipslayBookId = parseInt(event.target.id);
+    removeFromLibrary(myLibrary, dipslayBookId);
+    removeDisplayBook(event);
   });
 }
 
 //------ Functions to remove books from display and library ----
 
-function removeDisplayBook() {
-  const div = document.querySelector(".book-card");
-  div.remove();
+function removeDisplayBook(event) {
+  event.currentTarget.parentNode.remove();
 }
 
-function removeFromLibrary(array, element) {
-  const index = array.indexOf(element);
-  array.splice(index, 1);
+// function removeFromLibrary(array, idNumber) {
+//   const indexOfObject = array.findIndex((object) => {
+//     return object.id === 2;
+//   });
+//};
+
+////////////copy of this function
+function removeFromLibrary(array, idNumber) {
+  array.forEach((book, i) => {
+    let libraryId = array[i]["id"];
+    if (libraryId - 1 === idNumber) {
+      arrayIndex = libraryId - 1;
+      array.splice(arrayIndex, 1);
+      arrayIndex -= 1;
+    }
+  });
 }
-//// I need to add ID to every element of book in mylibrary array
