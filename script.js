@@ -12,8 +12,7 @@ function Book(author, tittle, pages) {
   this.author = author;
   this.tittle = tittle;
   this.pages = pages;
-  this.id = -1;
-  this.id1 = Math.floor(Math.random() * 1000000);
+  this.id = Math.floor(Math.random() * 1000000);
 }
 
 // -------------Getting book from the user input-------------
@@ -23,15 +22,12 @@ function userBook() {
   const tittle = document.querySelector("#tittle");
   const pages = document.querySelector("#pages");
 
-  const newBook = new Book(author.value, tittle.value, pages.value, (id = -1));
+  const newBook = new Book(author.value, tittle.value, pages.value);
 
   if (author.value === "" || tittle.value === "" || pages.value === "") {
     alert("Please fill all the data.");
   } else {
     myLibrary.push(newBook);
-    myLibrary.forEach((item, i) => {
-      item.id = i + 1;
-    });
     createBookCard();
   }
 }
@@ -49,7 +45,7 @@ function closeForm() {
 
 // -------------Adding books to display-------------
 
-function createBookCard() {
+function createBookCard(book, index) {
   const bookContainer = document.querySelector(".book-container");
   const bookCard = document.createElement("div");
   const author = document.createElement("p");
@@ -61,7 +57,9 @@ function createBookCard() {
   const toggleSwitchSpan = document.createElement("span");
   const isRead = document.createElement("p");
 
-  myLibrary.forEach((book) => {
+  bookCard.setAttribute("id", index);
+
+  myLibrary.forEach((book, index) => {
     author.textContent = `Author: ${book.author}`;
     tittle.textContent = `Tittle: ${book.tittle}`;
     pages.textContent = `Pages: ${book.pages}`;
@@ -92,8 +90,13 @@ function createBookCard() {
   //// -------------remove button -------------
   createRemoveBtn.classList.add("remove-button");
   createRemoveBtn.addEventListener("click", (event) => {
-    let dipslayBookId = parseInt(event.target.id);
-    removeFromLibrary(myLibrary, dipslayBookId);
+    let bookId = parseInt(event.target.id);
+    myLibrary.map((book, index) => {
+      if (index === bookId) {
+        myLibrary.splice(index, 1);
+      }
+    });
+    // remove(bookId);
     removeDisplayBook(event);
   });
 }
@@ -104,20 +107,8 @@ function removeDisplayBook(event) {
   event.currentTarget.parentNode.remove();
 }
 
-// function removeFromLibrary(array, idNumber) {
-//   const indexOfObject = array.findIndex((object) => {
-//     return object.id === 2;
-//   });
-//};
+////////////work in progress
 
-////////////copy of this function
-function removeFromLibrary(array, idNumber) {
-  array.forEach((book, i) => {
-    let libraryId = array[i]["id"];
-    if (libraryId - 1 === idNumber) {
-      arrayIndex = libraryId - 1;
-      array.splice(arrayIndex, 1);
-      arrayIndex -= 1;
-    }
-  });
+function remove(bookId) {
+  myLibrary.splice(bookId, 1);
 }
