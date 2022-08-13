@@ -1,5 +1,9 @@
+html {
+  background: rgb(14,209,209);
+  background: linear-gradient(199deg, rgba(14,209,209,1) 7%, rgba(252,252,252,1) 100%);
+  min-height: 100%;
 
-
+}
 
 
 
