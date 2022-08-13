@@ -56,6 +56,7 @@ function createBookCard(book, index) {
   const toggleSwitchInput = document.createElement("input");
   const toggleSwitchSpan = document.createElement("span");
   const isRead = document.createElement("p");
+  const isRead2 = document.createElement("p");
 
   bookCard.setAttribute("id", index);
 
@@ -73,13 +74,15 @@ function createBookCard(book, index) {
   bookCard.appendChild(author);
   bookCard.appendChild(tittle);
   bookCard.appendChild(pages);
+  bookCard.appendChild(isRead);
   bookCard.appendChild(toggleSwitchLabel);
   toggleSwitchLabel.appendChild(toggleSwitchInput);
   toggleSwitchLabel.appendChild(toggleSwitchSpan);
-
-  bookCard.appendChild(isRead);
+  bookCard.appendChild(isRead2);
   bookCard.appendChild(createRemoveBtn);
-  isRead.textContent = "NO / YES";
+
+  isRead.textContent = "Read :";
+  isRead2.textContent = "NO / YES";
   bookCard.classList.add("book-card");
   // -------------Toggle Switch-------------
 
