@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 let myLibrary = [];
 
 const btnAdd = document.querySelector("#add");
@@ -6,14 +8,6 @@ btnOpen.addEventListener("click", openForm);
 
 const hideFormBtn = document.querySelector(".hide-form");
 hideFormBtn.addEventListener("click", closeForm);
-
-// function Book(author, tittle, pages) {
-//   //constructor
-//   this.author = author;
-//   this.tittle = tittle;
-//   this.pages = pages;
-//   this.id = Math.floor(Math.random() * 1000000);
-// }
 
 class Book {
   constructor(author, tittle, pages) {
@@ -41,7 +35,10 @@ function userBook() {
   }
 }
 
-btnAdd.addEventListener("click", userBook);
+btnAdd.addEventListener("click", () => {
+  userBook();
+  validate();
+});
 
 // -------------Pop up form hide / open -------------
 function openForm() {
@@ -123,4 +120,18 @@ function removeDisplayBook(event) {
 
 function remove(bookId) {
   myLibrary.splice(bookId, 1);
+}
+
+// Validation for inputs
+function validate() {
+  const authorInput = document.querySelector("#author");
+
+  authorInput.addEventListener("input", (event) => {
+    if (authorInput.validity.valueMissing) {
+      authorInput.setCustomValidity("I'm expecting an author");
+      authorInput.reportValidity();
+    } else {
+      authorInput.setCustomValidity("");
+    }
+  });
 }
